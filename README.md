@@ -41,7 +41,7 @@ To do so, trough the notebook IDE:
 	# Clicking '>| Run' executes the selected cell's source code
 
 ### Testing different models
-The project is organized as to allow for the easy and fast testing of different models. This is possible due to the code modularization and the usage of advanced tools like sklearn's pipelines, which speed up the prediction's workflow.
+The project is organized as to allow for easy and quick testing of different models. This is possible due to the code modularization and the usage of advanced tools like sklearn's pipelines, which speed up the prediction's workflow.
 
 Among the classifiers tested during development, Linear Regression was the one that had the best performance and, thus, was the one kept in the final version. 
 
