@@ -1,4 +1,4 @@
-.ipynb_checkpoints
+*.ipynb_checkpoints
 
 # Python 3 bytecode files
 *.pyc
