@@ -1,13 +1,37 @@
 ## Instructions
 To run this project some python libraries are required. These are defined in *requirements.txt*.
 
-The recommended way to install them is to use pip and virtual environments.
+The recommended way to install them is to use *conda*, or *pip*, and virtual environments.
 
-With Python 3+ and pip installed, execute the following in a command prompt :
+##### Installing with conda
+
+
+With Anaconda installed, execute the following in a anaconda command prompt :
 
 1. Change to this project's folder
 	
-	`$ cd "path_to_folder"`
+	`$ cd "path/to/folder"`
+
+2. Create a virtual environment.
+
+	`$ conda create -y --name env-name`
+
+3. Activate your new environment.
+
+	`$ conda activate env-name`
+
+4. Install the required libraries.
+
+	`$ conda install --force-reinstall -y --name env-name -c conda-forge --file requirements.txt`
+
+
+##### Installing with pip
+
+With Python 3+ and *pip* installed, execute the following in a command prompt :
+
+1. Change to this project's folder
+	
+	`$ cd "path/to/folder"`
 2. Create a virtual environment.
 
 	`$ py -m venv env-name`
@@ -18,13 +42,17 @@ With Python 3+ and pip installed, execute the following in a command prompt :
 
 4. Install the required libraries.
 
-	`pip install -r requirements.txt`
+	`$ pip install -r requirements.txt`
+
+Using *conda* is preferred, *pip* may fail to install some libraries like *shap* if some microsoft visual studio resources are not already installed.
+
+### Executing Notebooks
 
 Once you have the libraries installed you can edit the source code and interact with the notebooks yourself.
 
-To execute the notebooks, with your virtual environment activated, execute:
+To open the notebooks, with the virtual environment activated, in this project's folder, execute:
 
-	$ jupyter notebook
+    $ jupyter notebook
 
 This should open a browser tab in which you can select and run the notebooks.
 
@@ -32,35 +60,41 @@ This should open a browser tab in which you can select and run the notebooks.
 
 ### Data Analisys (1_notebook)
 
-The initial notebooks are for data exploration, they explore the data's quality and help to understand the features's overall behavior before going into predictions.
+The initial notebooks are for data exploration, they explore the data's quality and help to understand the features's overall distribution before going into predictions.
 
 ### Model (2_notebook)
-Here the model is built, tested and interpreted. The building steps are logically organized and explained as they happen. The final steps measure the model performance and interpret its results.
+Here the model is built, tested and interpreted. The steps are explained and logically organized. 
 
+## Rerunning the prediction
+It is possible to rerun the prediction process step by step. 
 
-## Building and executing models
-Executing the '2_notebook', it is possible to go trough the prediction process step by step, from building the model to testing its outcome. 
+To do so, trough the notebook IDE in notebook #2:
 
-To do so, trough the notebook IDE:
+1. Restart the kernel, keeping only markdowns and source code:
+	
 
-	-> Kernel
-		-> Restart & Clear Outputs 
-		# This will restart the notebook keeping only its markdowns and source code
-	-> Select the first cell and starting clicking '>| Run'
-	# Clicking '>| Run' executes the selected cell's source code
+		Go to Kernel > Restart & Clear Outputs
+	
+2. Start executing cells:
+		
+
+		Click '>| Run' to execute selected cell's source code
 
 ### Testing different models
-The project is organized as to allow for easy and quick testing of different models. This is possible due to the code modularization and the usage of advanced tools like sklearn's pipelines, which speed up the prediction's workflow.
 
-#### Classifier selection
-To test Random Forest for instance, one needs only to edit the corresponding lines in cell number 5:
+The notebook is designed as to allow for the easy testing of different models. 
+
+With little code edits it is possible to perform feature and classifier selection.  
+
+##### Feature selection
+To test the impact of feature selection, edit Cell 3, taking features in and out of the corresponding list.
+
+##### Classifier selection
+To use a different classifier import it from scikit's module and use it as *clf*, like so:
 
 	from sklearn.ensemble import RandomForestClassifier
 	clf = RandomForestClassifier()
 
-One will notice that the Random Forest does not generate great results, but it could be improved by hard-tweaking its parameters with a grid search.
+When defining the classifier it is also possible to use different hyper-parameters, using its optional arguments.
 
-#### Feature selection
-To test the impact of feature selection, edit Cell 3, taking features in an out of the corresponding list.
-
-For instance, including/excluding latitude, longitude and zip codes, noticeably impacts the model's performance.
+This way, with little programming experience, one can build, test and validate its own models and get a good grasp of the machine learning workflow.
