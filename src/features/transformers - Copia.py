@@ -1,48 +1,37 @@
 import numpy as np
-import pandas as pd
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
-def num_pipe():
+def numeric_transformer():
 
-    pipe = Pipeline([
+    transformer = Pipeline([
         ('imputer', SimpleImputer(strategy='mean')),
         ('standard_scaler', StandardScaler())
     ])
 
-    return pipe
+    return transformer
 
-def cat_pipe():
 
-    pipe = Pipeline([
+def categorical_transformer():
+
+    transformer = Pipeline([
         ('imputer', SimpleImputer(strategy='most_frequent')),
         ('one_hot_encoder', OneHotEncoder(handle_unknown='ignore', sparse=False))
     ])
 
-    return pipe
+    return transformer
 
-def preprocessor(num_feat, cat_feat, num_pipe=num_pipe(), cat_pipe=cat_pipe()):
 
-    pp = ColumnTransformer([
-        ('numeric_transformer', num_pipe, num_feat),
-        ('categorical_transformer', cat_pipe, cat_feat)
+def preprocessor(numeric_features, categorical_features):
+
+    transformers = ColumnTransformer([
+        ('numeric_transformer', numeric_transformer(), numeric_features),
+        ('categorical_transformer', categorical_transformer(), categorical_features)
     ])
 
-    return pp
-
-def preprocess(df, num_feat, cat_feat, target, num_pipe=num_pipe(), cat_pipe=cat_pipe()):
-    
-    pp = preprocessor(num_feat, cat_feat, num_pipe, cat_pipe)
-    x = pp.fit_transform(df)
-    
-    cols = get_column_names_from_ColumnTransformer(pp, cat_feat)
-
-    x = pd.DataFrame(x, columns=cols)
-    y = df[[target]]
-    
-    return pd.concat([x, y], axis=1)
+    return transformers
 
 
 def get_column_names_from_ColumnTransformer(column_transformer, cat_feat_names):

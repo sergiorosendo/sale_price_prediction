@@ -44,7 +44,7 @@ With Python 3+ and *pip* installed, execute the following in a command prompt :
 
 	`$ pip install -r requirements.txt`
 
-Using *conda* is preferred, *pip* may fail to install some libraries like *shap* if some microsoft visual studio resources are not already installed.
+Using *conda* is preferred, *pip* may fail to install libraries like *shap* in *Windows*, if some microsoft visual studio resources are not already installed.
 
 ### Executing Notebooks
 

@@ -150,9 +150,12 @@ def plot_renovation_date(df):
 
 from ..features.transformers import get_column_names_from_ColumnTransformer
 
-def lr_coeff(pp, clf):
+def lr_coeff(cols, clf):
 
-    reg_coeff = pd.concat([pd.DataFrame(get_column_names_from_ColumnTransformer(pp), columns=['Feature']), pd.DataFrame(np.transpose(clf.coef_), columns=['Coefficient'])], axis = 1)
+    reg_coeff = pd.concat([
+        pd.DataFrame(cols, columns=['Feature']), 
+        pd.DataFrame(np.transpose(clf.coef_), columns=['Coefficient'])
+        ], axis = 1)
     reg_coeff.set_index(keys='Feature', inplace=True)
     reg_coeff.sort_values(by='Coefficient', ascending=False, inplace=True)
     return reg_coeff
