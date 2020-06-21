@@ -63,7 +63,7 @@ This should open a browser tab in which you can select and run the notebooks.
 The initial notebooks are for data exploration, they explore the data's quality and help to understand the features's overall distribution before going into predictions.
 
 ### Model (2_notebook)
-Here the model is built, tested and interpreted. The steps are explained and logically organized. 
+Here models are built, tested and interpreted. 
 
 ## Rerunning the prediction
 It is possible to rerun the prediction process step by step. 
