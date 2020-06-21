@@ -92,8 +92,8 @@ To test the impact of feature selection, edit Cell 3, taking features in and out
 ##### Classifier selection
 To use a different classifier import it from scikit's module and use it as *clf*, like so:
 
-	from sklearn.ensemble import RandomForestClassifier
-	clf = RandomForestClassifier()
+	from sklearn.ensemble import RandomForestRegressor
+	clf = RandomForestRegressor()
 
 When defining the classifier it is also possible to use different hyper-parameters, using its optional arguments.
 
